@@ -2,7 +2,7 @@
     <div class="bg-indigo-900 flex flex-col h-screen" 
     x-data="{
         showSubscribe: false,
-        showSuccess: true,
+        showSuccess: false,
     }">
         <nav class="pt-5 flex justify-between container mx-auto text-indigo-200">
             <a href="/" class="text-2xl font-bold">
@@ -41,19 +41,25 @@
             >
                 <x-text-input 
                     class="px-5 py-3 w-80 border-blue-400 border" 
-                    type="email" 
+                    type="text" 
                     name="email"
                     placeholder="Email Address"
                     wire:model="email"
                 >
                 </x-text-input>
-                <span class="text-gray-100 mt-1"> We will send you a confirmation email. </span>
-                <x-primary-button class="px5 py-3 mt-5 w-80 bg-blue-500 justify-center"> Get in </x-primary-button>
+                <span class="text-gray-100 mt-2"> 
+                    {{
+                        $errors->has('email') ? $errors->first('email') : "We will send you a confirmation email."
+                    }}
+                </span>
+                <x-primary-button class="px5 py-3 mt-5 w-80 bg-blue-500 justify-center"> 
+                    Get in 
+                </x-primary-button>
             </form>
         </x-my-modal>
     </div>
 
-    <x-my-modal trigger="showSuccess" class="bg-green-500">
+    {{-- <x-my-modal trigger="showSuccess" class="bg-green-500">
         <p class="animate-pulse text-white font-extrabold text-5xl text-center w-full mt-10"> 
             &check;
         </p>
@@ -63,5 +69,5 @@
         <p class="text-2xl text-center mt-1 text-white">
             See you in your inbox!
         </p>
-    </x-my-modal>
+    </x-my-modal> --}}
 </div>
