@@ -10,11 +10,20 @@ use Livewire\Component;
 
 class LandingPage extends Component
 {
-    public $email;
+    public $email = "";
+    public $showSubscribe;
+    public $showSuccess;
 
     protected $rules = [
         'email' => 'required|email:filter|unique:subscribers,email',
     ];
+
+    public function mount()
+    {
+        $this->email = '';
+        $this->showSubscribe = false;
+        $this->showSuccess = false;
+    }
 
     public function subscribe()
     {
@@ -26,6 +35,7 @@ class LandingPage extends Component
             ]);
 
             $notification = new VerifyEmail;
+
             $notification::createUrlUsing(function ($notifible) {
                 return URL::temporarySignedRoute(
                     'subscribers.verify',
@@ -40,6 +50,8 @@ class LandingPage extends Component
         }, $deadlokRetries = 5);
 
         $this->reset('email');
+        $this->showSubscribe = false;
+        $this->showSuccess = true;
     }
 
     public function render()
