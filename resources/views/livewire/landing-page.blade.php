@@ -47,7 +47,7 @@
                 type="text" 
                 name="email"
                 placeholder="Email Address"
-                wire:model="email"
+                wire:model.defer="email"
             >
             </x-text-input>
             <span class="text-gray-100 mt-2"> 
