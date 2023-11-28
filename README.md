@@ -19,6 +19,7 @@
 
 ``` bash
 php artisan migrate:fresh
+php artisan db:seed
 ```
 
 - Sqlite DB: The inserts are in database/database.sqlite

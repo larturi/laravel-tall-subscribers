@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Subscriber;
-use Illuminate\Http\Request;
 
 class SubscriberController extends Controller
 {
@@ -14,5 +13,12 @@ class SubscriberController extends Controller
         }
 
         return redirect('/?verified=1');
+    }
+
+    public function all()
+    {
+        return view('subscribers.all')->with([
+            'subscribers' => Subscriber::all()
+        ]);
     }
 }
